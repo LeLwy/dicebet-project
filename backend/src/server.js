@@ -32,6 +32,11 @@ io.on("connection", (socket) => {
     });
 });
 
+socket.on("obtenirParties", () => {
+    const parties = gestionJeu.obtenirPartiesEnCours();
+    socket.emit("listeParties", parties);
+});
+
 server.listen(PORT, () => {
     console.log(`🚀 Serveur en cours d'exécution sur http://localhost:${PORT}`);
 });

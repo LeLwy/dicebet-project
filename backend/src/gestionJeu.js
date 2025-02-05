@@ -1,6 +1,6 @@
 class GestionJeu {
     constructor() {
-      this.parties = {}; // Stocke les parties en cours
+      this.parties = {};
     }
   
     creerPartie(idPartie, hote) {

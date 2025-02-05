@@ -7,8 +7,16 @@ const socket = io("http://localhost:3001", {
 socket.on("connect", () => {
     console.log("✅ Connecté au serveur avec ID:", socket.id);
 
-    // Enviar evento de creación de partida
-    socket.emit("creerPartie", "partieTest");
+    socket.emit("obtenirParties", (response) => {
+        if (response.length === 0) {
+            console.log("📄 Il n'y a pas de parties disponibles.");
+            socket.emit("creerPartie", "partieTest", (response) => {
+                console.log("📄 Partie créée :", response);
+            });
+        } else {
+            console.log("📄 Parties obtenues :", response);
+        }
+    });
 });
 
 socket.on("majPartie", (data) => {
