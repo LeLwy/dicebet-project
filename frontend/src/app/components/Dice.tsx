@@ -1,5 +1,3 @@
-
-// Dice.tsx
 import React from 'react';
 
 interface DiceProps {
@@ -9,7 +7,7 @@ interface DiceProps {
 const Dice: React.FC<DiceProps> = ({ value }) => {
   return (
     <div className="dice">
-      {value}
+      <p>{value}</p>
     </div>
   );
 };
