@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Bidding: React.FC = () => {
     const [bidAmount, setBidAmount] = useState<number>(0);
@@ -7,9 +10,15 @@ const Bidding: React.FC = () => {
         setBidAmount(Number(event.target.value));
     };
 
-    const placeBid = () => {
-        console.log(`Bid placed: ${bidAmount}`);
-        // Add logic to handle bid placement
+    const placeBid = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/api/place-bid', { bidAmount });
+            console.log(response.data.message);
+            alert(response.data.message);
+        } catch (error) {
+            console.error('Error placing bid:', error);
+            alert('Failed to place bid');
+        }
     };
 
     return (
