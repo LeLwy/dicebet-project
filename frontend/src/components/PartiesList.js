@@ -3,6 +3,40 @@ import React, { useEffect, useState } from "react";
 import { socket } from "../socket";
 import GameBoard from "./GameBoard";
 
+/**
+ * PartiesList component manages the list of game parties and the active game state.
+ * 
+ * @component
+ * @example
+ * return (
+ *   <PartiesList />
+ * )
+ * 
+ * @returns {JSX.Element} The rendered component.
+ * 
+ * @description
+ * - Uses socket.io to communicate with the server for game party updates.
+ * - Allows users to create, join, and start game parties.
+ * - Displays the list of available game parties and the active game board.
+ * - Handles game state updates and displays the winner when a game is finished.
+ * 
+ * @function creerNouvellePartie
+ * Prompts the user to enter a new game party name and emits a socket event to create it.
+ * 
+ * @function rejoindrePartie
+ * @param {string} idPartie - The ID of the game party to join.
+ * Emits a socket event to join the specified game party.
+ * 
+ * @function demarrerPartie
+ * @param {string} idPartie - The ID of the game party to start.
+ * Emits a socket event to start the specified game party.
+ * 
+ * @function quitterPartie
+ * Resets the active game state and the winner state.
+ * 
+ * @hook useEffect
+ * Sets up socket event listeners for game party updates and cleans them up on component unmount.
+ */
 const PartiesList = () => {
   const [parties, setParties] = useState([]);
   const [partieActive, setPartieActive] = useState(null);

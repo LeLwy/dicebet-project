@@ -2,6 +2,29 @@
 import React, { useEffect, useState } from "react";
 import { socket } from "../socket";
 
+/**
+ * Component representing the game board for an active game.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.partieActive - The active game data.
+ * @param {Function} props.quitterPartie - Function to quit the game.
+ * @returns {JSX.Element} The rendered game board component.
+ *
+ * @example
+ * <GameBoard partieActive={partieActive} quitterPartie={quitterPartie} />
+ *
+ * @component
+ * @name GameBoard
+ *
+ * @description
+ * This component displays the game board for an active game. It shows the current game state,
+ * including the player's turn, the last bet, and the player's dice. It also provides forms
+ * for making a bet and a button for doubting the last bet.
+ *
+ * @requires useState
+ * @requires useEffect
+ * @requires socket
+ */
 const GameBoard = ({ partieActive, quitterPartie }) => {
   // Guard clause: si partieActive es undefined, mostramos "Chargement..."
   if (!partieActive) {
